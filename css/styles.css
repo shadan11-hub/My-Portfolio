@@ -1,16 +1,26 @@
-/* Custom styles */
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+/* Global styles */
 body {
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Deeper dark background with subtle texture */
+    background: #1a202c; /* Fallback */
+    background-image: radial-gradient(at 50% 100%, rgba(200, 200, 255, 0.05) 0%, transparent 70%),
+                      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 70%),
+                      radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0%, transparent 70%),
+                      #1a202c;
+    color: #e2e8f0; /* Default light gray for text */
 }
 
 /* Base styles for navigation links */
 .nav-link {
-    @apply text-gray-300 hover:text-blue-400 font-medium transition duration-300 relative;
+    @apply text-gray-300 hover:text-blue-400 font-medium transition duration-300 relative px-3 py-2 rounded-md;
 }
-
-.nav-link.active::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-full h-0.5 bg-blue-400;
+.nav-link.active {
+    @apply text-blue-400 bg-gray-700;
 }
 
 .nav-link-mobile {
@@ -19,39 +29,47 @@ body {
 
 /* Primary Button */
 .btn-primary {
-    @apply inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105;
+    @apply inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-xl;
 }
 
 /* Secondary Button */
 .btn-secondary {
-    @apply inline-block bg-transparent border-2 border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105;
+    @apply inline-block bg-transparent border-2 border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-xl;
 }
 
 /* Project Card styles */
 .project-card {
-    @apply bg-gray-800 rounded-lg shadow-xl p-6 transition-transform transform hover:scale-105 duration-300 border border-gray-700;
+    @apply bg-gray-800 rounded-xl shadow-2xl p-6 transition-transform transform hover:scale-103 duration-300 border border-gray-700;
 }
 .project-card img {
-    @apply w-full h-40 object-cover rounded-t-lg; /* Ensure image fits well */
+    @apply w-full h-48 object-cover rounded-md mb-4 shadow-inner; /* More defined image style */
 }
-
+.project-card h3 {
+    @apply text-blue-300 text-xl font-semibold mb-2;
+}
+.project-card p {
+    @apply text-gray-400 text-base; /* Slightly larger text */
+}
 
 /* Skill Category styles */
 .skill-category {
-    @apply bg-gray-700 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 border border-gray-600;
+    @apply bg-gray-800 p-6 rounded-xl shadow-lg transition-transform transform hover:scale-103 border border-gray-700;
 }
 .skill-category ul li {
-    @apply flex items-center;
+    @apply flex items-center text-gray-300 text-base;
 }
 .skill-category ul li::before {
     content: '•'; /* Bullet point */
-    @apply text-blue-400 mr-2 text-lg;
+    @apply text-green-400 mr-2 text-lg font-bold; /* Green bullet for techy look */
+}
+.skill-category h3 {
+    @apply text-green-400 text-xl font-semibold mb-3;
 }
 
 
 /* General Project Page Styling */
 .project-detail-section {
-    @apply bg-gray-800 rounded-xl shadow-2xl p-6 sm:p-8 lg:p-10;
+    @apply bg-gray-800 rounded-xl shadow-2xl p-6 sm:p-8 lg:p-10 border border-gray-700;
 }
 
 .project-detail-content h2 {
@@ -59,11 +77,15 @@ body {
 }
 
 .project-detail-content h3 {
-    @apply text-xl sm:text-2xl font-semibold text-gray-100 mb-4 mt-8;
+    @apply text-xl sm:text-2xl font-semibold text-green-400 mb-4 mt-8; /* Project subsections in green */
 }
 
-.project-detail-content p, .project-detail-content ul, .project-detail-content ol {
-    @apply text-gray-300 leading-relaxed mb-4;
+.project-detail-content h4 { /* For deeper sub-sections */
+    @apply text-lg font-semibold text-gray-200 mb-3 mt-6;
+}
+
+.project-detail-content p, .project-detail-content ul, .project-detail-content ol, .project-detail-content table {
+    @apply text-gray-300 leading-relaxed mb-4 text-base;
 }
 
 .project-detail-content ul li {
@@ -75,7 +97,7 @@ body {
 }
 
 .project-detail-content strong {
-    @apply text-gray-100;
+    @apply text-white;
 }
 
 .project-detail-content a {
@@ -83,11 +105,31 @@ body {
 }
 
 .project-image {
-    @apply w-full h-auto rounded-lg shadow-lg my-6;
+    @apply w-full h-auto rounded-lg shadow-xl my-6 border border-gray-700;
 }
 
 .project-pdf-embed {
     @apply w-full h-[600px] sm:h-[800px] lg:h-[900px] border border-gray-700 rounded-lg;
+}
+
+/* Tables in Project Details */
+.project-detail-content table {
+    @apply w-full table-auto border-collapse;
+}
+.project-detail-content th, .project-detail-content td {
+    @apply py-3 px-4 border border-gray-700 text-left;
+}
+.project-detail-content thead {
+    @apply bg-gray-700;
+}
+.project-detail-content thead th {
+    @apply text-blue-400 font-semibold uppercase text-sm;
+}
+.project-detail-content tbody tr:nth-child(odd) {
+    @apply bg-gray-700;
+}
+.project-detail-content tbody tr:hover {
+    @apply bg-gray-600 transition duration-200;
 }
 
 /* Animations */
@@ -117,3 +159,17 @@ body {
 .animate-fade-in-up.delay-300 { animation-delay: 0.3s; }
 .animate-fade-in-up.delay-400 { animation-delay: 0.4s; }
 .animate-fade-in-up.delay-500 { animation-delay: 0.5s; }
+.animate-fade-in-up.delay-600 { animation-delay: 0.6s; } /* Added for more projects */
+.animate-fade-in-up.delay-700 { animation-delay: 0.7s; } /* Added for more projects */
+
+
+/* Hero Section Specifics */
+.hero-section {
+    background-image: linear-gradient(to bottom right, #2d3748, #1a202c);
+    border: 1px solid #2d3748;
+}
+
+/* Footer specific style */
+footer {
+    border-top: 1px solid #2d3748;
+}

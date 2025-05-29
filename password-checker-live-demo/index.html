@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to ensure Inter font and smooth transitions */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Changed to a darker linear gradient background */
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); /* Darker shades of gray/blue */
+        }
+        .strength-bar {
+            transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out;
+        }
+        .criteria-item.met {
+            color: #34D399; /* Green-400 for better contrast on dark background */
+        }
+        .criteria-item.not-met {
+            color: #F87171; /* Red-400 for better contrast on dark background */
+        }
+        /* Animation for criteria icons */
+        .criteria-item span {
+            display: inline-block;
+            transform: scale(0);
+            animation: popIn 0.3s forwards;
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        /* Enhanced focus state for input */
+        input:focus {
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4); /* blue-500 with more opacity for dark theme */
+        }
+        /* Loading spinner for API call */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #34D399; /* Green-400 */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
+    <div class="bg-gray-800 p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl w-full max-w-md transform transition-transform duration-300 hover:scale-105">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-center text-gray-100 mb-6 tracking-tight">
+            Secure Password Analyzer
+        </h1>
+
+        <div class="mb-6">
+            <label for="password" class="block text-gray-300 text-sm font-semibold mb-2">Enter your password:</label>
+            <input
+                type="password"
+                id="password"
+                class="w-full px-4 py-3 border border-gray-600 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100 text-lg shadow-sm"
+                placeholder="Type your password here"
+            >
+        </div>
+
+        <div class="mb-6">
+            <p class="text-gray-300 text-sm font-semibold mb-2">Strength Indicator:</p>
+            <div class="w-full bg-gray-700 rounded-full h-4 relative overflow-hidden">
+                <div id="strength-bar" class="strength-bar h-full rounded-full absolute top-0 left-0" style="width: 0%;"></div>
+            </div>
+            <p id="strength-text" class="text-center text-gray-400 font-bold mt-3 text-base"></p>
+        </div>
+
+        <div>
+            <p class="text-gray-300 text-sm font-semibold mb-3">Password Requirements:</p>
+            <ul class="space-y-2 text-gray-200 text-base">
+                <li id="length-criteria" class="criteria-item flex items-center">
+                    <span class="mr-2 text-gray-500 text-lg leading-none"></span> At least 8 characters
+                </li>
+                <li id="uppercase-criteria" class="criteria-item flex items-center">
+                    <span class="mr-2 text-gray-500 text-lg leading-none"></span> Contains an uppercase letter
+                </li>
+                <li id="lowercase-criteria" class="criteria-item flex items-center">
+                    <span class="mr-2 text-gray-500 text-lg leading-none"></span> Contains a lowercase letter
+                </li>
+                <li id="number-criteria" class="criteria-item flex items-center">
+                    <span class="mr-2 text-gray-500 text-lg leading-none"></span> Contains a number
+                </li>
+                <li id="symbol-criteria" class="criteria-item flex items-center">
+                    <span class="mr-2 text-gray-500 text-lg leading-none"></span> Contains a special character (!@#$%^&*)
+                </li>
+            </ul>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-gray-700">
+            <h2 class="text-xl font-bold text-center text-gray-100 mb-4">✨ Password Suggestion</h2>
+            <button
+                id="generate-password-btn"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md flex items-center justify-center"
+            >
+                <span id="generate-password-text">Generate Strong Password</span>
+                <div id="generate-password-spinner" class="spinner ml-3 hidden"></div>
+            </button>
+            <div id="generated-password-container" class="mt-4 p-4 bg-gray-700 rounded-lg hidden">
+                <p class="text-gray-300 text-sm font-semibold mb-2">Suggested Password:</p>
+                <div class="flex items-center justify-between">
+                    <input
+                        type="text"
+                        id="generated-password-display"
+                        class="flex-grow px-3 py-2 border border-gray-600 bg-gray-800 rounded-lg text-gray-100 text-lg font-mono mr-2 focus:outline-none"
+                        readonly
+                    >
+                    <button
+                        id="copy-password-btn"
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-3 rounded-lg transition duration-300 shadow-sm text-sm"
+                    >
+                        Copy
+                    </button>
+                </div>
+                <p id="copy-feedback" class="text-sm text-green-400 mt-2 hidden text-center"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get references to the DOM elements
+        const passwordInput = document.getElementById('password');
+        const strengthBar = document.getElementById('strength-bar');
+        const strengthText = document.getElementById('strength-text');
+
+        const lengthCriteria = document.getElementById('length-criteria');
+        const uppercaseCriteria = document.getElementById('uppercase-criteria');
+        const lowercaseCriteria = document.getElementById('lowercase-criteria');
+        const numberCriteria = document.getElementById('number-criteria');
+        const symbolCriteria = document.getElementById('symbol-criteria');
+
+        // Gemini API elements
+        const generatePasswordBtn = document.getElementById('generate-password-btn');
+        const generatePasswordText = document.getElementById('generate-password-text');
+        const generatePasswordSpinner = document.getElementById('generate-password-spinner');
+        const generatedPasswordContainer = document.getElementById('generated-password-container');
+        const generatedPasswordDisplay = document.getElementById('generated-password-display');
+        const copyPasswordBtn = document.getElementById('copy-password-btn');
+        const copyFeedback = document.getElementById('copy-feedback');
+
+        // Function to update the criteria display (checkmark or cross)
+        function updateCriteriaDisplay(element, isMet) {
+            const iconSpan = element.querySelector('span');
+            // Clear previous animation class to re-trigger animation
+            iconSpan.style.animation = 'none';
+            iconSpan.offsetHeight; /* trigger reflow */
+            iconSpan.style.animation = null;
+
+            iconSpan.innerHTML = isMet ? '&#10003;' : '&#10007;'; // Checkmark or Cross
+            element.classList.toggle('met', isMet);
+            element.classList.toggle('not-met', !isMet);
+            // Ensure the gray color is removed if met/not-met is applied
+            element.classList.remove('text-gray-500'); // Changed from text-gray-400 for dark theme
+        }
+
+        // Event listener for password input changes
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            let score = 0; // Initialize strength score
+
+            // Define regex patterns for different character types
+            const hasLength = password.length >= 8;
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasLowercase = /[a-z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSymbol = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password);
+
+            // Update criteria display and calculate score
+            updateCriteriaDisplay(lengthCriteria, hasLength);
+            if (hasLength) score++;
+
+            updateCriteriaDisplay(uppercaseCriteria, hasUppercase);
+            if (uppercaseCriteria) score++;
+
+            updateCriteriaDisplay(lowercaseCriteria, hasLowercase);
+            if (lowercaseCriteria) score++;
+
+            updateCriteriaDisplay(numberCriteria, hasNumber);
+            if (numberCriteria) score++;
+
+            updateCriteriaDisplay(symbolCriteria, hasSymbol);
+            if (symbolCriteria) score++;
+
+            // Determine strength level based on score
+            let strength = '';
+            let barWidth = 0;
+            let barColor = '';
+            let textColor = '';
+
+            if (password.length === 0) {
+                strength = 'Start typing to check strength';
+                barWidth = 0;
+                barColor = 'bg-gray-700'; /* Darker gray for empty state in dark theme */
+                textColor = 'text-gray-500';
+                // Reset all criteria to gray when password is empty
+                [lengthCriteria, uppercaseCriteria, lowercaseCriteria, numberCriteria, symbolCriteria].forEach(el => {
+                    el.querySelector('span').innerHTML = '';
+                    el.classList.remove('met', 'not-met');
+                    el.classList.add('text-gray-500'); // Re-add gray for empty state in dark theme
+                });
+            } else if (score <= 2) {
+                strength = 'Weak';
+                barWidth = 33;
+                barColor = 'bg-red-500';
+                textColor = 'text-red-400'; /* Lighter red for contrast */
+            } else if (score <= 4) {
+                strength = 'Medium';
+                barWidth = 66;
+                barColor = 'bg-yellow-500';
+                textColor = 'text-yellow-400'; /* Lighter yellow for contrast */
+            } else {
+                strength = 'Strong';
+                barWidth = 100;
+                barColor = 'bg-green-500';
+                textColor = 'text-green-400'; /* Lighter green for contrast */
+            }
+
+            // Update the strength bar and text
+            strengthBar.style.width = `${barWidth}%`;
+            strengthBar.className = `strength-bar h-full rounded-full absolute top-0 left-0 ${barColor}`; // Update class for color
+            strengthText.textContent = strength;
+            strengthText.className = `text-center font-bold mt-3 text-base ${textColor}`; // Update class for text color
+        });
+
+        // Function to generate a password using Gemini API
+        generatePasswordBtn.addEventListener('click', async () => {
+            generatePasswordBtn.disabled = true;
+            generatePasswordText.textContent = 'Generating...';
+            generatePasswordSpinner.classList.remove('hidden');
+            generatedPasswordContainer.classList.add('hidden'); // Hide previous result
+            copyFeedback.classList.add('hidden'); // Hide copy feedback
+
+            try {
+                let chatHistory = [];
+                // Prompt the LLM to generate a strong password
+                const prompt = "Generate a strong, random, and unique password that is at least 12 characters long and includes uppercase letters, lowercase letters, numbers, and special characters. Do not include any explanations, just the password itself.";
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will automatically provide this in runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const generatedPassword = result.candidates[0].content.parts[0].text.trim();
+                    generatedPasswordDisplay.value = generatedPassword;
+                    generatedPasswordContainer.classList.remove('hidden');
+                } else {
+                    generatedPasswordDisplay.value = 'Error generating password.';
+                    generatedPasswordContainer.classList.remove('hidden');
+                    console.error('Gemini API response structure unexpected:', result);
+                }
+            } catch (error) {
+                generatedPasswordDisplay.value = 'Failed to generate password.';
+                generatedPasswordContainer.classList.remove('hidden');
+                console.error('Error calling Gemini API:', error);
+            } finally {
+                generatePasswordBtn.disabled = false;
+                generatePasswordText.textContent = 'Generate Strong Password';
+                generatePasswordSpinner.classList.add('hidden');
+            }
+        });
+
+        // Function to copy generated password to clipboard
+        copyPasswordBtn.addEventListener('click', () => {
+            generatedPasswordDisplay.select();
+            generatedPasswordDisplay.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand('copy'); // Fallback for older browsers/iframes
+
+            copyFeedback.textContent = 'Copied to clipboard!';
+            copyFeedback.classList.remove('hidden');
+            setTimeout(() => {
+                copyFeedback.classList.add('hidden');
+            }, 2000); // Hide feedback after 2 seconds
+        });
+
+        // Initialize the display when the page loads (e.g., if there's pre-filled content or on refresh)
+        // Trigger the input event once to set initial state
+        passwordInput.dispatchEvent(new Event('input'));
+    </script>
+</body>
+</html>

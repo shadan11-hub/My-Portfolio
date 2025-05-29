@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Fire Detection System (IoT) - Your Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-200 font-inter">
+    <header class="bg-gray-800 p-4 shadow-lg fixed w-full z-10 top-0">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="../index.html" class="text-xl font-bold text-blue-400 hover:text-blue-300 transition duration-300">Your Name</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../projects.html" class="nav-link active">Projects</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 pt-2 pb-4 px-4 text-center">
+            <a href="../index.html" class="block nav-link-mobile">Home</a>
+            <a href="../about.html" class="block nav-link-mobile">About</a>
+            <a href="../projects.html" class="block nav-link-mobile">Projects</a>
+            <a href="../contact.html" class="block nav-link-mobile">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-12">
+        <section class="container mx-auto px-4 py-16 project-detail-section animate-fade-in">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-400 text-center mb-8">Smart Fire Detection System (IoT)</h1>
+            <div class="project-detail-content max-w-4xl mx-auto">
+                <p class="text-center text-lg text-gray-300 mb-8">
+                    An IoT-based system for real-time fire hazard detection and alerts using Arduino, ESP8266, and Blynk, designed to enhance safety in residential and commercial environments.
+                </p>
+
+                <img src="https://via.placeholder.com/800x500/06B6D4/FFFFFF?text=IoT+Fire+System+Mockup" alt="IoT Fire Detection System Mockup" class="project-image">
+                <p class="text-center text-sm text-gray-500 italic mt-2">Figure 1: Conceptual Mockup of the Smart Fire Detection System</p>
+                <div class="text-center mb-8">
+                    <a href="link-to-iot-report.pdf" target="_blank" class="btn-primary mr-4">View Full Report (PDF)</a>
+                    <a href="https://github.com/yourusername/your-iot-repo" target="_blank" class="btn-secondary">View Code/Files on GitHub</a>
+                </div>
+
+                <h2>Project Overview</h2>
+                <p>
+                    This project focused on developing an enhanced Fire Detection System equipped with internet connectivity and real-time monitoring capabilities. By integrating temperature and gas sensors with IoT technology, the system ensures prompt detection of hazardous conditions and immediate notification to users through the Blynk mobile application. [cite: 78, 79] Alerts are delivered via audible signals from a piezo buzzer, visual indicators using LEDs, and real-time updates on a mobile app, making it a versatile and comprehensive safety mechanism. [cite: 80, 92]
+                </p>
+                <p>
+                    Targeting residential, commercial, and public facilities, this project addresses critical shortcomings in conventional fire detection systems, such as delayed responses and the need for manual intervention. [cite: 81]
+                </p>
+
+                <h3>Your Role</h3>
+                <p>
+                    I was a contributing member of the team responsible for the design, implementation, and testing of the Smart Fire Detection System. My contributions included researching sensor integration, assisting with Arduino programming, and validating system performance in simulated environments.
+                </p>
+
+                <h3>Design & Development Process</h3>
+                <h4>1. Problem-Solving Rationale & Objectives:</h4>
+                <p>The project aimed to mitigate fire risks through timely detection and response, addressing issues like high costs and reliance on manual monitoring in existing systems[cite: 116, 117]. Key objectives included: [cite: 99]</p>
+                <ul>
+                    <li>Providing efficient early detection of fire hazards through continuous real-time monitoring of temperature and gas levels[cite: 99, 100].</li>
+                    <li>Integrating an IoT-enabled WiFi module (ESP8266) for real-time updates and alerts via the Blynk mobile application[cite: 102].</li>
+                    <li>Utilizing audible alarms (piezo buzzer), visual cues (LEDs), and mobile app alerts for immediate warnings[cite: 104].</li>
+                    <li>Including an LCD interface for real-time sensor readings and alert messages[cite: 106].</li>
+                    <li>Ensuring modular and scalable design adaptable for various environments[cite: 110].</li>
+                </ul>
+
+                <h4>2. Project Methodology:</h4>
+                <p>A structured approach was used to gather information and design the prototype: [cite: 128]</p>
+                <ul>
+                    <li><strong>Information Collection:</strong> Surveys and interviews with potential users (homeowners, business owners in Malaysia) to identify challenges with existing systems. [cite: 129, 130] Reviewed safety guidelines like NFPA 72. [cite: 131]</li>
+                    <li><strong>Research Methods:</strong> Comparison of existing solutions, literature review on IoT-enabled systems, and use of simulation tools like Tinkercad for circuit design and functionality testing. [cite: 134, 137, 138]</li>
+                    <li><strong>Iterative Prototyping:</strong> Step-by-step development from basic sensor integration to full IoT connectivity. [cite: 140]</li>
+                    <li><strong>User-Centered Design:</strong> Incorporated user feedback for features like customizable warning thresholds and LCD displays. [cite: 141, 142]</li>
+                </ul>
+
+                <h4>3. Materials & Components:</h4>
+                <p>The system was built using key components, ensuring reliable performance: [cite: 109, 158]</p>
+                <div class="overflow-x-auto my-6">
+                    <table class="min-w-full bg-gray-700 rounded-lg shadow-md text-sm">
+                        <thead>
+                            <tr class="bg-gray-600 text-gray-100 uppercase text-left">
+                                <th class="py-3 px-4 border-b border-gray-600">Component Name</th>
+                                <th class="py-3 px-4 border-b border-gray-600">Functions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-600"><td class="py-3 px-4">Arduino Uno R3</td><td class="py-3 px-4">Reads sensor data, processes info, activates alerts. [cite: 159]</td></tr>
+                            <tr class="border-b border-gray-600"><td class="py-3 px-4">Breadboard</td><td class="py-3 px-4">Platform for organizing and connecting electronic components. [cite: 159]</td></tr>
+                            <tr class="border-b border-gray-600"><td class="py-3 px-4">Gas Sensor</td><td class="py-3 px-4">Senses flammable or toxic gases and smoke. [cite: 159]</td></tr>
+                            <tr class="border-b border-gray-600"><td class="py-3 px-4">Temperature Sensor</td><td class="py-3 px-4">Continuously monitors temperature. [cite: 159]</td></tr>
+                            <tr class="border-b border-gray-600"><td class="py-3 px-4">Piezo Buzzer</td><td class="py-3 px-4">Emits an audible warning. [cite: 159]</td></tr>
+                            <tr class="border-b border-gray-600"><td class="py-3 px-4">LED</td><td class="py-3 px-4">Provides a visual indication of hazards. [cite: 160]</td></tr>
+                            <tr class="border-b border-gray-600"><td class="py-3 px-4">LCD 16x2</td><td class="py-3 px-4">Displays current temperature, gas levels, and alerts. [cite: 160]</td></tr>
+                            <tr class="border-b border-gray-600"><td class="py-3 px-4">Potentiometer</td><td class="py-3 px-4">Controls LCD contrast. [cite: 160]</td></tr>
+                            <tr class="border-b border-gray-600"><td class="py-3 px-4">ESP8266 WiFi Module</td><td class="py-3 px-4">Provides internet connectivity for IoT functionality. [cite: 160]</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>4. Design Phase & Circuitry:</h4>
+                <p>The system's core design involves the Arduino Uno receiving input from temperature and gas sensors on a breadboard. An LCD displays real-time readings, adjusted by a potentiometer. Alerts are managed by a piezo buzzer and LEDs. The ESP8266 WiFi module provides internet connectivity for Blynk app notifications. [cite: 162, 165, 169, 173, 176]</p>
+                <img src="../images/iot_circuit.png" alt="IoT Fire Detection System Circuit Diagram" class="project-image">
+                <p class="text-center text-sm text-gray-500 italic mt-2">Figure 2: Smart Fire Detection System Circuit Design [cite: 161]</p>
+
+                <h4>5. Code Implementation:</h4>
+                <p>The Arduino code initializes pins, configures the LCD, and integrates the Blynk library for communication. It continuously processes analog readings from sensors, converts temperature to Celsius, and compares values against predefined thresholds (e.g., 50°C for temperature, 100 units for gas)[cite: 184, 185, 186]. When thresholds are exceeded, the system activates visual (LEDs, LCD) and audible (buzzer) alerts, and sends notifications to the Blynk app[cite: 187]. For debugging, sensor readings are outputted to the serial monitor[cite: 192].</p>
+                <img src="../images/iot_code_snippet.png" alt="IoT Fire Detection System Code Snippet" class="project-image">
+                <p class="text-center text-sm text-gray-500 italic mt-2">Figure 3: Arduino Code Snippet for Fire Detection Logic [cite: 179, 180, 181, 182, 183]</p>
+
+                <h4>6. Control and Testing Methods:</h4>
+                <p>Rigorous testing ensured system functionality: [cite: 143]</p>
+                <ul>
+                    <li><strong>Unit Testing:</strong> Individual components (sensors, buzzer, WiFi module) were tested. [cite: 144]</li>
+                    <li><strong>Integration Testing:</strong> Verified communication between sensors, Arduino, and Blynk. [cite: 145, 146]</li>
+                    <li><strong>Threshold Calibration:</strong> Controlled tests to determine accurate detection thresholds. [cite: 147, 148]</li>
+                    <li><strong>Environmental Testing:</strong> Tested performance in various conditions, including different temperatures and humidity levels. [cite: 149, 150]</li>
+                    <li><strong>Validation against Standards:</strong> Tested against fire safety standards for compliance. [cite: 151]</li>
+                    <li><strong>Debugging & Optimization:</strong> Used Arduino serial monitor and Blynk logs to identify and fix errors. [cite: 153, 154]</li>
+                    <li><strong>User Testing:</strong> Feedback from a small group of users refined hardware and software. [cite: 155, 156]</li>
+                </ul>
+                <img src="../images/iot_simulation_state_1.png" alt="IoT System Simulation - Safe Conditions" class="project-image">
+                <img src="../images/iot_simulation_state_2.png" alt="IoT System Simulation - Alert Triggered" class="project-image">
+                <img src="../images/iot_simulation_state_3.png" alt="IoT System Simulation - Calling Fire Department" class="project-image">
+                <p class="text-center text-sm text-gray-500 italic mt-2">Figure 4: System Simulation States (Before & After Trigger) [cite: 196]</p>
+                 <img src="../images/blynk_app_interface.png" alt="Blynk App Interface" class="project-image">
+                <p class="text-center text-sm text-gray-500 italic mt-2">Figure 5: Blynk App Interface Displaying Alerts [cite: 197]</p>
+
+
+                <h4>7. Scalability & Future Enhancements:</h4>
+                <p>The system is designed for high scalability, allowing for future enhancements: [cite: 110, 209]</p>
+                <ul>
+                    <li><strong>Sensor Integration:</strong> Accommodates additional sensors (smoke, humidity) using unused Arduino analog pins. [cite: 211, 212]</li>
+                    <li><strong>Display Expansion:</strong> Supports multiple LCDs or TFT screens for diverse locations[cite: 214, 215].</li>
+                    <li><strong>Centralized Monitoring:</strong> Multiple Arduino boards can be interconnected via I2C/SPI for aggregating data to a central hub[cite: 217, 218].</li>
+                    <li><strong>Enhanced Alerting:</strong> Can integrate GSM modules for SMS/voice call alerts, and voice assistants (Alexa, Google Assistant)[cite: 222, 223].</li>
+                    <li>**Modular Design:** Transitioning to a custom PCB enhances durability and allows for easy addition of components[cite: 266, 268].</li>
+                </ul>
+                <img src="../images/iot_flowchart.png" alt="IoT Fire Detection System Flowchart" class="project-image">
+                <p class="text-center text-sm text-gray-500 italic mt-2">Figure 6: System Flowchart [cite: 225]</p>
+                 <img src="../images/ai_cloud_system.png" alt="AI & Data Cloud System Concept" class="project-image">
+                <p class="text-center text-sm text-gray-500 italic mt-2">Figure 7: Conceptual AI & Data Cloud System for Emergency Response (EIRS) [cite: 231]</p>
+
+
+                <h3>Outcomes</h3>
+                <p>
+                    The Fire Detection System with Internet Connectivity and Real-Time Monitoring demonstrates a robust and effective solution for fire safety. It provides real-time detection of hazards, ensuring prompt notifications through visual, audible, and mobile app alerts[cite: 281, 282]. The integration of Arduino Uno and ESP8266, along with components like the LCD and Blynk app, reinforces its utility across various settings[cite: 283, 284]. Its modular and scalable design ensures adaptability, making it a reliable and user-friendly solution for proactive fire hazard detection and alerting[cite: 285, 290].
+                </p>
+                <p class="mt-8 text-center text-sm text-gray-500">
+                    <a href="link-to-iot-report.pdf" target="_blank" class="text-blue-400 hover:underline">Download Full IoT Project Report (PDF)</a> (Optional: Replace with actual PDF link)
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-center py-6 mt-12 text-gray-500 text-sm">
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+        <p>Built with <span class="text-red-500">&hearts;</span> and <a href="https://tailwindcss.com/" target="_blank" class="text-blue-400 hover:underline">Tailwind CSS</a>.</p>
+    </footer>
+
+    <script src="../js/scripts.js"></script>
+</body>
+</html>

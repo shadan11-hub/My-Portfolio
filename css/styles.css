@@ -1,0 +1,119 @@
+/* Custom styles */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Base styles for navigation links */
+.nav-link {
+    @apply text-gray-300 hover:text-blue-400 font-medium transition duration-300 relative;
+}
+
+.nav-link.active::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-blue-400;
+}
+
+.nav-link-mobile {
+    @apply text-gray-300 hover:text-blue-400 py-2 transition duration-300 border-b border-gray-700 last:border-b-0;
+}
+
+/* Primary Button */
+.btn-primary {
+    @apply inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105;
+}
+
+/* Secondary Button */
+.btn-secondary {
+    @apply inline-block bg-transparent border-2 border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105;
+}
+
+/* Project Card styles */
+.project-card {
+    @apply bg-gray-800 rounded-lg shadow-xl p-6 transition-transform transform hover:scale-105 duration-300 border border-gray-700;
+}
+.project-card img {
+    @apply w-full h-40 object-cover rounded-t-lg; /* Ensure image fits well */
+}
+
+
+/* Skill Category styles */
+.skill-category {
+    @apply bg-gray-700 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 border border-gray-600;
+}
+.skill-category ul li {
+    @apply flex items-center;
+}
+.skill-category ul li::before {
+    content: '•'; /* Bullet point */
+    @apply text-blue-400 mr-2 text-lg;
+}
+
+
+/* General Project Page Styling */
+.project-detail-section {
+    @apply bg-gray-800 rounded-xl shadow-2xl p-6 sm:p-8 lg:p-10;
+}
+
+.project-detail-content h2 {
+    @apply text-2xl sm:text-3xl font-bold text-blue-400 mb-6 border-b border-gray-700 pb-2;
+}
+
+.project-detail-content h3 {
+    @apply text-xl sm:text-2xl font-semibold text-gray-100 mb-4 mt-8;
+}
+
+.project-detail-content p, .project-detail-content ul, .project-detail-content ol {
+    @apply text-gray-300 leading-relaxed mb-4;
+}
+
+.project-detail-content ul li {
+    @apply list-disc ml-6 mb-2;
+}
+
+.project-detail-content ol li {
+    @apply list-decimal ml-6 mb-2;
+}
+
+.project-detail-content strong {
+    @apply text-gray-100;
+}
+
+.project-detail-content a {
+    @apply text-blue-400 hover:underline;
+}
+
+.project-image {
+    @apply w-full h-auto rounded-lg shadow-lg my-6;
+}
+
+.project-pdf-embed {
+    @apply w-full h-[600px] sm:h-[800px] lg:h-[900px] border border-gray-700 rounded-lg;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+.animate-fade-in-up.delay-100 { animation-delay: 0.1s; }
+.animate-fade-in-up.delay-200 { animation-delay: 0.2s; }
+.animate-fade-in-up.delay-300 { animation-delay: 0.3s; }
+.animate-fade-in-up.delay-400 { animation-delay: 0.4s; }
+.animate-fade-in-up.delay-500 { animation-delay: 0.5s; }

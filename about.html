@@ -3,131 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Your Name</title>
+    <title>About Me - Your Name</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-gray-200 font-inter">
-    <header class="bg-gray-800 p-4 shadow-lg fixed w-full z-10 top-0">
-        <nav class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold text-blue-400 hover:text-blue-300 transition duration-300">Your Name</a>
-            <div class="hidden md:flex space-x-6">
+<body class="bg-gray-900 text-gray-300 font-inter">
+
+    <header class="navbar">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+            <a href="index.html" class="text-2xl font-bold text-blue-400 hover:text-blue-300 transition duration-300">Your Name</a>
+            <div class="hidden md:flex items-center space-x-4">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link active">About</a>
                 <a href="projects.html" class="nav-link">Projects</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+            </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 pt-2 pb-4 px-4 text-center">
-            <a href="index.html" class="block nav-link-mobile">Home</a>
-            <a href="about.html" class="block nav-link-mobile">About</a>
-            <a href="projects.html" class="block nav-link-mobile">Projects</a>
-            <a href="contact.html" class="block nav-link-mobile">Contact</a>
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="nav-link-mobile">Home</a>
+                <a href="about.html" class="nav-link-mobile active">About</a>
+                <a href="projects.html" class="nav-link-mobile">Projects</a>
+                <a href="contact.html" class="nav-link-mobile">Contact</a>
+            </div>
         </div>
     </header>
 
     <main class="pt-24 pb-12">
-        <section class="container mx-auto px-4 py-16 bg-gray-800 rounded-xl shadow-2xl animate-fade-in">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-400 text-center mb-10">About Me</h1>
-            <div class="max-w-3xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8">
-                <div class="flex-shrink-0">
-                    <img src="https://via.placeholder.com/200/007bff/FFFFFF?text=Your+Photo" alt="Your Photo" class="w-48 h-48 rounded-full border-4 border-blue-500 shadow-lg">
+        <section class="container mx-auto px-4 py-12 animate-fade-in">
+            <div class="bg-gray-800 rounded-xl shadow-2xl p-6 sm:p-10">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-400 text-center mb-10">About Me</h1>
+                <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-start gap-8 md:gap-12">
+                    <div class="flex-shrink-0 md:w-1/3 text-center md:text-left animate-on-scroll">
+                        <img src="images/your-professional-photo.jpg" alt="Your Name - Professional Photo" class="w-48 h-48 sm:w-60 sm:h-60 rounded-full mx-auto md:mx-0 border-4 border-blue-500 shadow-lg mb-6">
+                        <h3 class="text-2xl font-semibold text-gray-100">Your Name</h3>
+                        <p class="text-blue-300">IT Student - Cybersecurity Major</p>
+                        <p class="text-sm text-gray-500">UniKL MIIT</p> </div>
+                    <div class="md:w-2/3 animate-on-scroll delay-100">
+                        <h4 class="text-xl font-semibold text-gray-100 mb-3">Hello there!</h4>
+                        <p class="text-lg leading-relaxed text-gray-300 mb-4">
+                            I am an enthusiastic and driven IT student at UniKL MIIT, specializing in Cybersecurity[cite: 1]. My journey into the world of technology is fueled by a profound interest in safeguarding digital landscapes and a keen desire to architect and develop secure, resilient systems. I believe that a foundational understanding of how systems are constructed is paramount to effectively defending them.
+                        </p>
+                        <p class="text-lg leading-relaxed text-gray-300 mb-4">
+                            My academic pursuits in Introduction to Multimedia (IMB 11703) [cite: 1] have further broadened my perspective, allowing me to explore the creative facets of technology. This portfolio is a testament to that exploration, showcasing not only my technical projects but also my approach to web design and user experience.
+                        </p>
+                        <p class="text-lg leading-relaxed text-gray-300 mb-6">
+                            Beyond cybersecurity, I am passionate about user-centric web design and the innovative potential of Internet of Things (IoT) technologies. This diverse skill set enables me to approach challenges holistically—not merely identifying vulnerabilities, but also understanding the development lifecycle and implementing solutions that are both secure and intuitive. My philosophy revolves around continuous learning and applying my skills to contribute positively to the ever-evolving digital world. My background education at UniKL MIIT has provided me with a strong theoretical and practical foundation to pursue these goals[cite: 14].
+                        </p>
+                        <a href="contact.html" class="btn-primary mt-4">Get in Touch <i class="fas fa-envelope ml-2"></i></a>
+                         <a href="path-to-your-resume.pdf" target="_blank" class="btn-outline ml-4 mt-4">View Resume <i class="fas fa-file-alt ml-2"></i></a>
+                    </div>
                 </div>
-                <div class="md:text-left text-center">
-                    <h2 class="text-2xl font-semibold text-gray-100 mb-4">Hello! I'm Your Name.</h2>
-                    <p class="text-lg leading-relaxed text-gray-300 mb-4">
-                        I am an enthusiastic IT student specializing in Cybersecurity at UniKL MIIT. My journey in technology is driven by a deep fascination with protecting digital assets and an eagerness to build robust, secure systems. I believe that a strong understanding of how systems are built, from the ground up, is essential for truly defending them.
-                    </p>
-                    <p class="text-lg leading-relaxed text-gray-300 mb-6">
-                        Beyond the realm of defensive and offensive security, I'm passionate about web design and Internet of Things (IoT) technologies. This blend of skills allows me to approach problems holistically – not just identifying vulnerabilities, but also understanding the development process and how to implement secure, user-friendly solutions. My goal is to contribute to a safer digital world, one secure system and well-designed interface at a time.
-                    </p>
-                    <a href="contact.html" class="btn-primary">Get in Touch</a>
-                </div>
-            </div>
 
-            <div class="mt-16 pt-10 border-t border-gray-700">
-                <h2 class="text-2xl font-bold text-gray-100 mb-6 text-center">My Skills</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                    <div class="skill-category">
-                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Cybersecurity</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Threat Modeling (STRIDE, DREAD)</li>
-                            <li>Vulnerability Assessment & Pen Testing (Basic)</li>
-                            <li>Secure Software Development Lifecycle</li>
-                            <li>Network Security Fundamentals</li>
-                            <li>OSINT & Digital Forensics (Basic)</li>
-                            <li>Security Auditing & Compliance</li>
-                            <li>Risk Management</li>
-                        </ul>
+                <div class="mt-16 pt-10 border-t border-gray-700 animate-on-scroll delay-200">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-100 mb-8 text-center">Core Competencies & Skills</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                        <div class="skill-category">
+                            <h4><i class="fas fa-shield-alt mr-2 text-blue-400"></i>Cybersecurity</h4>
+                            <ul class="space-y-2">
+                                <li class="skill-item"><i class="fas fa-bug"></i><span>Threat Modeling (STRIDE, DREAD)</span></li>
+                                <li class="skill-item"><i class="fas fa-search"></i><span>Vulnerability Assessment (Basic)</span></li>
+                                <li class="skill-item"><i class="fas fa-code-branch"></i><span>Secure SDLC</span></li>
+                                <li class="skill-item"><i class="fas fa-network-wired"></i><span>Network Security Fundamentals</span></li>
+                                <li class="skill-item"><i class="fas fa-user-secret"></i><span>OSINT (Basic)</span></li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-laptop-code mr-2 text-blue-400"></i>Web Development</h4>
+                            <ul class="space-y-2">
+                                <li class="skill-item"><i class="fab fa-html5"></i><span>HTML5, CSS3, JavaScript</span></li>
+                                <li class="skill-item"><i class="fas fa-palette"></i><span>Responsive Design</span></li>
+                                <li class="skill-item"><i class="fab fa-css3-alt"></i><span>Tailwind CSS</span></li>
+                                <li class="skill-item"><i class="fas fa-lightbulb"></i><span>UI/UX Principles</span></li>
+                                <li class="skill-item"><i class="fas fa-cogs"></i><span>API Integration</span></li>
+                                <li class="skill-item"><i class="fas fa-rocket"></i><span>Performance Optimization [cite: 5]</span></li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-microchip mr-2 text-blue-400"></i>IoT & Hardware</h4>
+                            <ul class="space-y-2">
+                                <li class="skill-item"><i class="fab fa-arduino"></i><span>Arduino & ESP8266</span></li>
+                                <li class="skill-item"><i class="fas fa-thermometer-half"></i><span>Sensor Integration</span></li>
+                                <li class="skill-item"><i class="fas fa-mobile-alt"></i><span>Blynk Platform</span></li>
+                                <li class="skill-item"><i class="fas fa-drafting-compass"></i><span>Circuit Design (Tinkercad)</span></li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-tools mr-2 text-blue-400"></i>Other Technical & Design</h4>
+                            <ul class="space-y-2">
+                                <li class="skill-item"><i class="fab fa-python"></i><span>Python Programming</span></li>
+                                <li class="skill-item"><i class="fab fa-git-alt"></i><span>Git & Version Control</span></li>
+                                <li class="skill-item"><i class="fas fa-pencil-ruler"></i><span>Graphic Design (Posters, Booklets) [cite: 9]</span></li>
+                                <li class="skill-item"><i class="fas fa-universal-access"></i><span>Accessibility (WCAG Basics) [cite: 6]</span></li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-users mr-2 text-blue-400"></i>Soft Skills</h4>
+                            <ul class="space-y-2">
+                                <li class="skill-item"><i class="fas fa-puzzle-piece"></i><span>Problem Solving</span></li>
+                                <li class="skill-item"><i class="fas fa-lightbulb"></i><span>Critical Thinking</span></li>
+                                <li class="skill-item"><i class="fas fa-comments"></i><span>Communication</span></li>
+                                <li class="skill-item"><i class="fas fa-crosshairs"></i><span>Attention to Detail</span></li>
+                                <li class="skill-item"><i class="fas fa-sync-alt"></i><span>Adaptability</span></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="skill-category">
-                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Web Development</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>HTML5, CSS3, JavaScript</li>
-                            <li>Responsive Design</li>
-                            <li>Tailwind CSS</li>
-                            <li>UI/UX Principles</li>
-                            <li>API Integration (e.g., Gemini API)</li>
-                            <li>Front-end Frameworks (Basic)</li>
-                            <li>Performance Optimization</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="text-xl font-semibold text-blue-400 mb-3">IoT & Hardware</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Arduino & ESP8266 Programming</li>
-                            <li>Sensor Integration (Temp, Gas)</li>
-                            <li>Blynk Platform</li>
-                            <li>Circuit Design (Tinkercad)</li>
-                            <li>Hardware-Software Interfacing</li>
-                            <li>Real-time Data Monitoring</li>
-                        </ul>
-                    </div>
-                     <div class="skill-category">
-                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Other Technical Skills</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Python Programming</li>
-                            <li>Git & Version Control</li>
-                            <li>Linux OS (Basic)</li>
-                            <li>Database Fundamentals (SQL)</li>
-                            <li>Report Writing</li>
-                        </ul>
-                    </div>
-                     <div class="skill-category">
-                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Creative Design</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Graphic Design (Posters, Booklets)</li>
-                            <li>Visual Communication</li>
-                            <li>Layout & Typography</li>
-                            <li>Image Editing (Basic)</li>
-                            <li>Brand Messaging</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Soft Skills</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Problem Solving</li>
-                            <li>Critical Thinking</li>
-                            <li>Communication & Presentation</li>
-                            <li>Attention to Detail</li>
-                            <li>Adaptability</li>
-                            <li>Teamwork</li>
-                        </ul>
+                </div>
+                 <div class="mt-16 pt-10 border-t border-gray-700 animate-on-scroll delay-300">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-100 mb-8 text-center">Design & UX Philosophy</h2>
+                    <div class="max-w-3xl mx-auto text-lg">
+                        <p>My approach to design and user experience (UX) is rooted in empathy and clarity[cite: 10]. I strive to create interfaces that are not only visually appealing but also intuitive and accessible to all users[cite: 6]. This involves understanding the target audience[cite: 10], organizing information logically (Information Architecture)[cite: 12], and iteratively refining designs based on feedback and usability principles[cite: 11]. I believe that good design solves problems effectively and enhances the user's interaction with technology.</p>
+                        <p>For my projects, I consider aspects like responsive design for multiple devices[cite: 5], performance for faster load times[cite: 5], and overall visual consistency to provide a cohesive experience[cite: 7].</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-center py-6 mt-12 text-gray-500 text-sm">
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
-        <p>Built with <span class="text-red-500">&hearts;</span> and <a href="https://tailwindcss.com/" target="_blank" class="text-blue-400 hover:underline">Tailwind CSS</a>.</p>
+    <footer class="footer">
+        <div class="container mx-auto px-4">
+            <div class="social-icons mb-4">
+                <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:your.email@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year">2025</span> Your Name. All Rights Reserved.</p>
+            <p>Built with <i class="fas fa-heart text-red-500"></i> using <a href="https://tailwindcss.com/" target="_blank" class="hover:underline">Tailwind CSS</a> & deployed on <a href="https://netlify.com" target="_blank" class="hover:underline">Netlify</a>.</p>
+             <p class="mt-2 text-xs text-gray-600">This portfolio aims for WCAG compliance for accessibility. [cite: 6]</p>
+        </div>
     </footer>
-
+    <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
     <script src="js/scripts.js"></script>
 </body>
 </html>

@@ -1,175 +1,207 @@
-/* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+/* css/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
 
-/* Global styles */
 body {
     font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* Deeper dark background with subtle texture */
-    background: #1a202c; /* Fallback */
-    background-image: radial-gradient(at 50% 100%, rgba(200, 200, 255, 0.05) 0%, transparent 70%),
-                      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 70%),
-                      radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0%, transparent 70%),
-                      #1a202c;
-    color: #e2e8f0; /* Default light gray for text */
+    @apply bg-gray-900 text-gray-300 antialiased;
+    line-height: 1.6;
 }
 
-/* Base styles for navigation links */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    @apply font-semibold text-gray-100;
+}
+
+h1 { @apply text-4xl sm:text-5xl font-extrabold; }
+h2 { @apply text-3xl sm:text-4xl font-bold; }
+h3 { @apply text-2xl sm:text-3xl font-semibold; }
+h4 { @apply text-xl sm:text-2xl font-semibold; }
+
+p {
+    @apply mb-4 text-gray-400;
+}
+
+a {
+    @apply text-blue-400 hover:text-blue-300 transition-colors duration-300;
+}
+
+/* Navbar Styles */
+.navbar {
+    @apply bg-gray-800/80 backdrop-blur-md shadow-lg fixed w-full z-50 top-0 transition-all duration-300;
+}
+
 .nav-link {
-    @apply text-gray-300 hover:text-blue-400 font-medium transition duration-300 relative px-3 py-2 rounded-md;
+    @apply text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium relative;
 }
+
 .nav-link.active {
-    @apply text-blue-400 bg-gray-700;
+    @apply text-blue-400;
 }
+
+.nav-link.active::after, .nav-link:not(.active):hover::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2/3 h-0.5 bg-blue-400 rounded-full;
+    transition: width 0.3s ease-in-out;
+}
+.nav-link:not(.active):hover::after {
+    @apply w-1/3; /* Smaller underline for non-active hover */
+}
+
 
 .nav-link-mobile {
-    @apply text-gray-300 hover:text-blue-400 py-2 transition duration-300 border-b border-gray-700 last:border-b-0;
+    @apply block text-gray-300 hover:text-blue-400 hover:bg-gray-700 px-3 py-3 rounded-md text-base font-medium;
+}
+.nav-link-mobile.active {
+    @apply bg-blue-600 text-white;
 }
 
-/* Primary Button */
+/* Buttons */
+.btn {
+    @apply inline-block font-medium rounded-lg text-sm px-6 py-3 text-center transition-all duration-300 ease-in-out shadow-md hover:shadow-lg;
+}
 .btn-primary {
-    @apply inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-xl;
+    @apply btn bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105;
 }
-
-/* Secondary Button */
 .btn-secondary {
-    @apply inline-block bg-transparent border-2 border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-xl;
+    @apply btn bg-gray-700 text-gray-200 hover:bg-gray-600 border border-gray-600 transform hover:scale-105;
+}
+.btn-outline {
+    @apply btn border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transform hover:scale-105;
 }
 
-/* Project Card styles */
+/* Project Card Styles */
 .project-card {
-    @apply bg-gray-800 rounded-xl shadow-2xl p-6 transition-transform transform hover:scale-103 duration-300 border border-gray-700;
+    @apply bg-gray-800 rounded-xl shadow-xl p-6 transition-all duration-300 ease-in-out border border-gray-700 hover:border-blue-500/70 hover:shadow-blue-500/20 hover:transform hover:-translate-y-2;
+    overflow: hidden; /* Ensures content fits within rounded corners */
+}
+.project-card-image-container {
+    @apply w-full h-48 overflow-hidden rounded-lg mb-4; /* Fixed height for consistency */
 }
 .project-card img {
-    @apply w-full h-48 object-cover rounded-md mb-4 shadow-inner; /* More defined image style */
+    @apply w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110; /* Zoom effect on hover */
 }
 .project-card h3 {
-    @apply text-blue-300 text-xl font-semibold mb-2;
+    @apply text-xl font-bold text-gray-100 mb-2;
 }
 .project-card p {
-    @apply text-gray-400 text-base; /* Slightly larger text */
+    @apply text-gray-400 text-sm mb-3 leading-relaxed;
+}
+.project-card-tags span {
+    @apply inline-block bg-gray-700 text-blue-300 text-xs font-mono px-2 py-1 rounded-full mr-2 mb-2;
 }
 
-/* Skill Category styles */
+/* Skill Category & Item Styles */
 .skill-category {
-    @apply bg-gray-800 p-6 rounded-xl shadow-lg transition-transform transform hover:scale-103 border border-gray-700;
+    @apply bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700;
 }
-.skill-category ul li {
-    @apply flex items-center text-gray-300 text-base;
+.skill-category h4 {
+    @apply text-xl font-semibold text-blue-400 mb-4 border-b border-gray-700 pb-2;
 }
-.skill-category ul li::before {
-    content: '•'; /* Bullet point */
-    @apply text-green-400 mr-2 text-lg font-bold; /* Green bullet for techy look */
+.skill-item {
+    @apply flex items-center bg-gray-700/50 p-3 rounded-md mb-2 hover:bg-gray-700 transition-colors duration-200;
 }
-.skill-category h3 {
-    @apply text-green-400 text-xl font-semibold mb-3;
+.skill-item i { /* For Font Awesome icons */
+    @apply text-blue-400 text-lg mr-3;
+}
+.skill-item span {
+    @apply text-gray-300;
 }
 
-
-/* General Project Page Styling */
+/* General Project Detail Page Styling */
 .project-detail-section {
-    @apply bg-gray-800 rounded-xl shadow-2xl p-6 sm:p-8 lg:p-10 border border-gray-700;
+    @apply bg-gray-800 rounded-xl shadow-2xl p-6 sm:p-8 lg:p-10 mt-8;
+}
+.project-detail-header h1 {
+    @apply text-blue-400 mb-2;
+}
+.project-detail-header .subtitle {
+    @apply text-gray-400 text-lg mb-6;
 }
 
-.project-detail-content h2 {
-    @apply text-2xl sm:text-3xl font-bold text-blue-400 mb-6 border-b border-gray-700 pb-2;
+.project-detail-content h2 { /* Section titles within project page */
+    @apply text-2xl sm:text-3xl font-bold text-blue-400 mt-10 mb-4 border-b-2 border-blue-500/30 pb-2;
 }
-
-.project-detail-content h3 {
-    @apply text-xl sm:text-2xl font-semibold text-green-400 mb-4 mt-8; /* Project subsections in green */
+.project-detail-content h3 { /* Sub-section titles */
+    @apply text-xl sm:text-2xl font-semibold text-gray-200 mb-3 mt-6;
 }
-
-.project-detail-content h4 { /* For deeper sub-sections */
-    @apply text-lg font-semibold text-gray-200 mb-3 mt-6;
+.project-detail-content p,
+.project-detail-content ul,
+.project-detail-content ol {
+    @apply text-gray-300 leading-relaxed mb-4 text-base md:text-lg;
 }
-
-.project-detail-content p, .project-detail-content ul, .project-detail-content ol, .project-detail-content table {
-    @apply text-gray-300 leading-relaxed mb-4 text-base;
-}
-
-.project-detail-content ul li {
-    @apply list-disc ml-6 mb-2;
-}
-
+.project-detail-content ul { @apply list-disc list-outside ml-6; }
+.project-detail-content ol { @apply list-decimal list-outside ml-6; }
+.project-detail-content ul li,
 .project-detail-content ol li {
-    @apply list-decimal ml-6 mb-2;
+    @apply mb-2;
 }
-
 .project-detail-content strong {
-    @apply text-white;
+    @apply font-semibold text-gray-100;
 }
-
 .project-detail-content a {
-    @apply text-blue-400 hover:underline;
+    @apply text-blue-300 hover:underline font-medium;
 }
-
 .project-image {
-    @apply w-full h-auto rounded-lg shadow-xl my-6 border border-gray-700;
+    @apply w-full h-auto rounded-lg shadow-xl my-6 border-2 border-gray-700;
 }
-
 .project-pdf-embed {
-    @apply w-full h-[600px] sm:h-[800px] lg:h-[900px] border border-gray-700 rounded-lg;
+    @apply w-full min-h-[600px] sm:min-h-[800px] lg:min-h-[900px] border border-gray-700 rounded-lg my-6;
 }
 
-/* Tables in Project Details */
-.project-detail-content table {
-    @apply w-full table-auto border-collapse;
+/* Contact Page Styles */
+.contact-item {
+    @apply flex items-center bg-gray-800 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:bg-gray-700/70 border border-gray-700;
 }
-.project-detail-content th, .project-detail-content td {
-    @apply py-3 px-4 border border-gray-700 text-left;
-}
-.project-detail-content thead {
-    @apply bg-gray-700;
-}
-.project-detail-content thead th {
-    @apply text-blue-400 font-semibold uppercase text-sm;
-}
-.project-detail-content tbody tr:nth-child(odd) {
-    @apply bg-gray-700;
-}
-.project-detail-content tbody tr:hover {
-    @apply bg-gray-600 transition duration-200;
+.contact-item i {
+    @apply text-blue-400 text-2xl mr-4 flex-shrink-0;
 }
 
-/* Animations */
+/* Footer */
+.footer {
+    @apply bg-gray-800 text-center py-8 mt-16 border-t border-gray-700;
+}
+.footer p {
+    @apply text-gray-500 text-sm mb-1;
+}
+.footer .social-icons a {
+    @apply inline-block text-gray-400 hover:text-blue-400 mx-2 text-xl transition-colors duration-300;
+}
+
+/* Animations (Subtle) */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
+    animation: fadeIn 0.7s ease-out forwards;
 }
-
 .animate-slide-up {
-    animation: slideUp 0.8s ease-out forwards;
+    animation: slideUp 0.7s ease-out forwards;
 }
 
-.animate-fade-in-up {
-    animation: fadeIn 0.8s ease-out forwards;
+/* Helper for staggered animations if needed */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Custom scrollbar (optional, for a more modern feel - Webkit browsers) */
+::-webkit-scrollbar {
+    width: 8px;
 }
-.animate-fade-in-up.delay-100 { animation-delay: 0.1s; }
-.animate-fade-in-up.delay-200 { animation-delay: 0.2s; }
-.animate-fade-in-up.delay-300 { animation-delay: 0.3s; }
-.animate-fade-in-up.delay-400 { animation-delay: 0.4s; }
-.animate-fade-in-up.delay-500 { animation-delay: 0.5s; }
-.animate-fade-in-up.delay-600 { animation-delay: 0.6s; } /* Added for more projects */
-.animate-fade-in-up.delay-700 { animation-delay: 0.7s; } /* Added for more projects */
-
-
-/* Hero Section Specifics */
-.hero-section {
-    background-image: linear-gradient(to bottom right, #2d3748, #1a202c);
-    border: 1px solid #2d3748;
+::-webkit-scrollbar-track {
+    background: #1f2937; /* gray-800 */
 }
-
-/* Footer specific style */
-footer {
-    border-top: 1px solid #2d3748;
+::-webkit-scrollbar-thumb {
+    background: #3b82f6; /* blue-500 */
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #2563eb; /* blue-600 */
 }

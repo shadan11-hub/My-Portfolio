@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Strength Checker</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Custom styles to ensure Inter font and smooth transitions */
         body {
@@ -32,7 +33,7 @@
             to { transform: scale(1); opacity: 1; }
         }
         /* Enhanced focus state for input */
-        input:focus {
+        input[type="password"]:focus, input[type="text"]:focus {
             box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4); /* blue-500 with more opacity for dark theme */
         }
         /* Loading spinner for API call */
@@ -48,6 +49,18 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        /* Styles for the password toggle icon */
+        .password-toggle-icon {
+            position: absolute;
+            top: 50%;
+            right: 0.75rem; /* 12px */
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #9ca3af; /* gray-400 */
+        }
+        .password-toggle-icon:hover {
+            color: #60a5fa; /* blue-400 */
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
@@ -58,12 +71,15 @@
 
         <div class="mb-6">
             <label for="password" class="block text-gray-300 text-sm font-semibold mb-2">Enter your password:</label>
-            <input
-                type="password"
-                id="password"
-                class="w-full px-4 py-3 border border-gray-600 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100 text-lg shadow-sm"
-                placeholder="Type your password here"
-            >
+            <div class="relative">
+                <input
+                    type="password"
+                    id="password"
+                    class="w-full px-4 py-3 pr-10 border border-gray-600 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100 text-lg shadow-sm" /* Added pr-10 for icon space */
+                    placeholder="Type your password here"
+                >
+                <i id="togglePassword" class="fas fa-eye password-toggle-icon"></i>
+            </div>
         </div>
 
         <div class="mb-6">
@@ -130,6 +146,7 @@
         const passwordInput = document.getElementById('password');
         const strengthBar = document.getElementById('strength-bar');
         const strengthText = document.getElementById('strength-text');
+        const togglePassword = document.getElementById('togglePassword'); // Added for password visibility
 
         const lengthCriteria = document.getElementById('length-criteria');
         const uppercaseCriteria = document.getElementById('uppercase-criteria');
@@ -146,6 +163,19 @@
         const copyPasswordBtn = document.getElementById('copy-password-btn');
         const copyFeedback = document.getElementById('copy-feedback');
 
+        // Event listener for the password visibility toggle
+        if (togglePassword) {
+            togglePassword.addEventListener('click', function (e) {
+                // Toggle the type attribute
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                // Toggle the icon
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        }
+
+
         // Function to update the criteria display (checkmark or cross)
         function updateCriteriaDisplay(element, isMet) {
             const iconSpan = element.querySelector('span');
@@ -158,7 +188,7 @@
             element.classList.toggle('met', isMet);
             element.classList.toggle('not-met', !isMet);
             // Ensure the gray color is removed if met/not-met is applied
-            element.classList.remove('text-gray-500'); // Changed from text-gray-400 for dark theme
+            element.classList.remove('text-gray-500');
         }
 
         // Event listener for password input changes
@@ -178,16 +208,16 @@
             if (hasLength) score++;
 
             updateCriteriaDisplay(uppercaseCriteria, hasUppercase);
-            if (uppercaseCriteria) score++;
+            if (hasUppercase) score++;
 
             updateCriteriaDisplay(lowercaseCriteria, hasLowercase);
-            if (lowercaseCriteria) score++;
+            if (hasLowercase) score++;
 
             updateCriteriaDisplay(numberCriteria, hasNumber);
-            if (numberCriteria) score++;
+            if (hasNumber) score++;
 
             updateCriteriaDisplay(symbolCriteria, hasSymbol);
-            if (symbolCriteria) score++;
+            if (hasSymbol) score++;
 
             // Determine strength level based on score
             let strength = '';
@@ -198,36 +228,37 @@
             if (password.length === 0) {
                 strength = 'Start typing to check strength';
                 barWidth = 0;
-                barColor = 'bg-gray-700'; /* Darker gray for empty state in dark theme */
+                barColor = 'bg-gray-700';
                 textColor = 'text-gray-500';
                 // Reset all criteria to gray when password is empty
                 [lengthCriteria, uppercaseCriteria, lowercaseCriteria, numberCriteria, symbolCriteria].forEach(el => {
-                    el.querySelector('span').innerHTML = '';
+                    const iconSpan = el.querySelector('span');
+                    iconSpan.innerHTML = '';
                     el.classList.remove('met', 'not-met');
-                    el.classList.add('text-gray-500'); // Re-add gray for empty state in dark theme
+                    el.classList.add('text-gray-500');
                 });
             } else if (score <= 2) {
                 strength = 'Weak';
                 barWidth = 33;
                 barColor = 'bg-red-500';
-                textColor = 'text-red-400'; /* Lighter red for contrast */
+                textColor = 'text-red-400';
             } else if (score <= 4) {
                 strength = 'Medium';
                 barWidth = 66;
                 barColor = 'bg-yellow-500';
-                textColor = 'text-yellow-400'; /* Lighter yellow for contrast */
-            } else {
+                textColor = 'text-yellow-400';
+            } else { // Score is 5
                 strength = 'Strong';
                 barWidth = 100;
                 barColor = 'bg-green-500';
-                textColor = 'text-green-400'; /* Lighter green for contrast */
+                textColor = 'text-green-400';
             }
 
             // Update the strength bar and text
             strengthBar.style.width = `${barWidth}%`;
-            strengthBar.className = `strength-bar h-full rounded-full absolute top-0 left-0 ${barColor}`; // Update class for color
+            strengthBar.className = `strength-bar h-full rounded-full absolute top-0 left-0 ${barColor}`;
             strengthText.textContent = strength;
-            strengthText.className = `text-center font-bold mt-3 text-base ${textColor}`; // Update class for text color
+            strengthText.className = `text-center font-bold mt-3 text-base ${textColor}`;
         });
 
         // Function to generate a password using Gemini API
@@ -235,16 +266,15 @@
             generatePasswordBtn.disabled = true;
             generatePasswordText.textContent = 'Generating...';
             generatePasswordSpinner.classList.remove('hidden');
-            generatedPasswordContainer.classList.add('hidden'); // Hide previous result
-            copyFeedback.classList.add('hidden'); // Hide copy feedback
+            generatedPasswordContainer.classList.add('hidden');
+            copyFeedback.classList.add('hidden');
 
             try {
                 let chatHistory = [];
-                // Prompt the LLM to generate a strong password
                 const prompt = "Generate a strong, random, and unique password that is at least 12 characters long and includes uppercase letters, lowercase letters, numbers, and special characters. Do not include any explanations, just the password itself.";
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                 const payload = { contents: chatHistory };
-                const apiKey = ""; // Canvas will automatically provide this in runtime
+                const apiKey = ""; // Canvas will automatically provide this in runtime if configured
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -252,6 +282,16 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
+
+                if (!response.ok) {
+                    let errorData;
+                    try {
+                        errorData = await response.json();
+                    } catch (e) {
+                        errorData = { error: { message: response.statusText } };
+                    }
+                    throw new Error(`API Error ${response.status}: ${errorData.error?.message || 'Unknown error'}`);
+                }
 
                 const result = await response.json();
 
@@ -262,12 +302,12 @@
                     generatedPasswordDisplay.value = generatedPassword;
                     generatedPasswordContainer.classList.remove('hidden');
                 } else {
-                    generatedPasswordDisplay.value = 'Error generating password.';
+                    generatedPasswordDisplay.value = 'Error: No password in response.';
                     generatedPasswordContainer.classList.remove('hidden');
-                    console.error('Gemini API response structure unexpected:', result);
+                    console.error('Gemini API response structure unexpected or empty:', result);
                 }
             } catch (error) {
-                generatedPasswordDisplay.value = 'Failed to generate password.';
+                generatedPasswordDisplay.value = 'Failed to generate. Check console.';
                 generatedPasswordContainer.classList.remove('hidden');
                 console.error('Error calling Gemini API:', error);
             } finally {
@@ -280,18 +320,26 @@
         // Function to copy generated password to clipboard
         copyPasswordBtn.addEventListener('click', () => {
             generatedPasswordDisplay.select();
-            generatedPasswordDisplay.setSelectionRange(0, 99999); // For mobile devices
-            document.execCommand('copy'); // Fallback for older browsers/iframes
+            generatedPasswordDisplay.setSelectionRange(0, 99999);
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    copyFeedback.textContent = 'Copied to clipboard!';
+                } else {
+                    copyFeedback.textContent = 'Copy failed. Please copy manually.';
+                }
+            } catch (err) {
+                copyFeedback.textContent = 'Copy failed. Please copy manually.';
+                console.error('Fallback: Oops, unable to copy', err);
+            }
 
-            copyFeedback.textContent = 'Copied to clipboard!';
             copyFeedback.classList.remove('hidden');
             setTimeout(() => {
                 copyFeedback.classList.add('hidden');
-            }, 2000); // Hide feedback after 2 seconds
+            }, 2000);
         });
 
-        // Initialize the display when the page loads (e.g., if there's pre-filled content or on refresh)
-        // Trigger the input event once to set initial state
+        // Initialize the display
         passwordInput.dispatchEvent(new Event('input'));
     </script>
 </body>

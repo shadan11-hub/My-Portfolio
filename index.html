@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Cybersecurity Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-200 font-inter">
+    <header class="bg-gray-800 p-4 shadow-lg fixed w-full z-10 top-0">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-blue-400 hover:text-blue-300 transition duration-300">Your Name</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 pt-2 pb-4 px-4 text-center">
+            <a href="index.html" class="block nav-link-mobile">Home</a>
+            <a href="about.html" class="block nav-link-mobile">About</a>
+            <a href="projects.html" class="block nav-link-mobile">Projects</a>
+            <a href="contact.html" class="block nav-link-mobile">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-12">
+        <section class="hero-section text-center py-20 px-4 bg-gray-800 rounded-xl max-w-4xl mx-auto shadow-2xl animate-fade-in">
+            <img src="https://via.placeholder.com/150/007bff/FFFFFF?text=Your+Photo" alt="Your Photo" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500 shadow-lg">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-400 mb-4">Your Name</h1>
+            <p class="text-xl sm:text-2xl font-light text-gray-300 mb-8">
+                Cybersecurity Student | Web Designer | IoT Enthusiast
+            </p>
+            <p class="text-lg leading-relaxed max-w-2xl mx-auto text-gray-300 mb-8">
+                Passionate about securing digital landscapes and building innovative solutions.
+                I blend strong analytical skills with a creative approach to tackle complex challenges in both cybersecurity and web development.
+            </p>
+            <a href="projects.html" class="btn-primary">Explore My Projects</a>
+        </section>
+
+        <section class="container mx-auto py-16 px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-blue-400 mb-12 animate-slide-up">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card animate-fade-in-up delay-100">
+                    <img src="https://via.placeholder.com/400x250/2563EB/FFFFFF?text=Password+Checker" alt="Password Strength Checker" class="rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Password Strength Checker</h3>
+                    <p class="text-gray-400 text-sm mb-4">A web-based tool providing real-time password strength analysis and AI-driven suggestions. Demonstrates secure coding practices and UI/UX design.</p>
+                    <a href="projects/password-checker-project.html" class="text-blue-400 hover:text-blue-300 font-medium">View Case Study & Live Demo &rarr;</a>
+                </div>
+
+                <div class="project-card animate-fade-in-up delay-200">
+                    <img src="https://via.placeholder.com/400x250/9333EA/FFFFFF?text=Threat+Modeling" alt="Threat Modeling Project" class="rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Secure Software Dev. (Threat Modeling)</h3>
+                    <p class="text-gray-400 text-sm mb-4">Comprehensive security analysis of an e-commerce application, including misuse cases, architectural diagrams, attack vectors, and mitigation strategies.</p>
+                    <a href="projects/threat-modeling-project.html" class="text-blue-400 hover:text-blue-300 font-medium">View Case Study &rarr;</a>
+                </div>
+
+                <div class="project-card animate-fade-in-up delay-300">
+                    <img src="https://via.placeholder.com/400x250/06B6D4/FFFFFF?text=IoT+Fire+System" alt="IoT Fire Detection System" class="rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">IoT: Smart Fire Detection System</h3>
+                    <p class="text-gray-400 text-sm mb-4">An IoT-based system for real-time fire hazard detection and alerts using Arduino, ESP8266, and Blynk, demonstrating hardware-software integration.</p>
+                    <a href="projects/iot-project.html" class="text-blue-400 hover:text-blue-300 font-medium">View Case Study &rarr;</a>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="projects.html" class="btn-secondary">View All Projects</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-center py-6 mt-12 text-gray-500 text-sm">
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+        <p>Built with <span class="text-red-500">&hearts;</span> and <a href="https://tailwindcss.com/" target="_blank" class="text-blue-400 hover:underline">Tailwind CSS</a>.</p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Your Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-200 font-inter">
+    <header class="bg-gray-800 p-4 shadow-lg fixed w-full z-10 top-0">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-blue-400 hover:text-blue-300 transition duration-300">Your Name</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 pt-2 pb-4 px-4 text-center">
+            <a href="index.html" class="block nav-link-mobile">Home</a>
+            <a href="about.html" class="block nav-link-mobile">About</a>
+            <a href="projects.html" class="block nav-link-mobile">Projects</a>
+            <a href="contact.html" class="block nav-link-mobile">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-12">
+        <section class="container mx-auto px-4 py-16 bg-gray-800 rounded-xl shadow-2xl animate-fade-in">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-400 text-center mb-10">About Me</h1>
+            <div class="max-w-3xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div class="flex-shrink-0">
+                    <img src="https://via.placeholder.com/200/007bff/FFFFFF?text=Your+Photo" alt="Your Photo" class="w-48 h-48 rounded-full border-4 border-blue-500 shadow-lg">
+                </div>
+                <div class="md:text-left text-center">
+                    <h2 class="text-2xl font-semibold text-gray-100 mb-4">Hello! I'm Your Name.</h2>
+                    <p class="text-lg leading-relaxed text-gray-300 mb-4">
+                        I am an enthusiastic IT student specializing in Cybersecurity at UniKL MIIT. My journey in technology is driven by a deep fascination with protecting digital assets and an eagerness to build robust, secure systems. I believe that a strong understanding of how systems are built, from the ground up, is essential for truly defending them.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-300 mb-6">
+                        Beyond the realm of defensive and offensive security, I'm passionate about web design and Internet of Things (IoT) technologies. This blend of skills allows me to approach problems holistically – not just identifying vulnerabilities, but also understanding the development process and how to implement secure, user-friendly solutions. My goal is to contribute to a safer digital world, one secure system and well-designed interface at a time.
+                    </p>
+                    <a href="contact.html" class="btn-primary">Get in Touch</a>
+                </div>
+            </div>
+
+            <div class="mt-16 pt-10 border-t border-gray-700">
+                <h2 class="text-2xl font-bold text-gray-100 mb-6 text-center">My Skills</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="skill-category">
+                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Cybersecurity</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Threat Modeling (STRIDE, DREAD)</li>
+                            <li>Vulnerability Assessment & Pen Testing (Basic)</li>
+                            <li>Secure Software Development Lifecycle</li>
+                            <li>Network Security Fundamentals</li>
+                            <li>OSINT & Digital Forensics (Basic)</li>
+                            <li>Security Auditing & Compliance</li>
+                            <li>Risk Management</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Web Development</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>HTML5, CSS3, JavaScript</li>
+                            <li>Responsive Design</li>
+                            <li>Tailwind CSS</li>
+                            <li>UI/UX Principles</li>
+                            <li>API Integration (e.g., Gemini API)</li>
+                            <li>Front-end Frameworks (Basic)</li>
+                            <li>Performance Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-xl font-semibold text-blue-400 mb-3">IoT & Hardware</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Arduino & ESP8266 Programming</li>
+                            <li>Sensor Integration (Temp, Gas)</li>
+                            <li>Blynk Platform</li>
+                            <li>Circuit Design (Tinkercad)</li>
+                            <li>Hardware-Software Interfacing</li>
+                            <li>Real-time Data Monitoring</li>
+                        </ul>
+                    </div>
+                     <div class="skill-category">
+                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Other Technical Skills</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Python Programming</li>
+                            <li>Git & Version Control</li>
+                            <li>Linux OS (Basic)</li>
+                            <li>Database Fundamentals (SQL)</li>
+                            <li>Report Writing</li>
+                        </ul>
+                    </div>
+                     <div class="skill-category">
+                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Creative Design</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Graphic Design (Posters, Booklets)</li>
+                            <li>Visual Communication</li>
+                            <li>Layout & Typography</li>
+                            <li>Image Editing (Basic)</li>
+                            <li>Brand Messaging</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-xl font-semibold text-blue-400 mb-3">Soft Skills</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Problem Solving</li>
+                            <li>Critical Thinking</li>
+                            <li>Communication & Presentation</li>
+                            <li>Attention to Detail</li>
+                            <li>Adaptability</li>
+                            <li>Teamwork</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-center py-6 mt-12 text-gray-500 text-sm">
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+        <p>Built with <span class="text-red-500">&hearts;</span> and <a href="https://tailwindcss.com/" target="_blank" class="text-blue-400 hover:underline">Tailwind CSS</a>.</p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
